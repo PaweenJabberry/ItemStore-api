@@ -4,6 +4,10 @@ public class Item {
 	private String id;
     private String name;
     private int    amount;
+    
+public Item(){
+}
+
 public Item(String id, String name, int amount){
         this.id = id;
         this.name = name;

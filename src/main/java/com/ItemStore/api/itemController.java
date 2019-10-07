@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,8 +31,21 @@ public class itemController {
         return items;
     }
     
+    public Item findItem(String id) {
+    	Item targetItem = new Item();
+		
+		for(int i = 0; i < items.size(); i++) {
+    		if(items.get(i).getId().equals(id)) {
+    			targetItem = items.get(i);
+    			break;
+    		}
+    	}
+		
+    	return targetItem;
+    }
+    
     @RequestMapping(value = "/delete", method=RequestMethod.POST)
-    public String deleteCosmetics(@RequestParam("t1") String name) {
+    public String deleteItems(@RequestParam("t1") String name) {
 //    	System.out.println(name);
     	for(int i = 0; i < items.size(); i++) {
     		if(items.get(i).getName().equals(name)) {
@@ -41,6 +56,14 @@ public class itemController {
     	return "index";
     }
     
+    @RequestMapping(value = "/add", method=RequestMethod.POST)
+    public String addItems(@RequestParam("id") String id, @RequestParam("name") String name, @RequestParam("amount") int amount) {
+//    	System.out.println(name);
+    	Item newItem = new Item(id,name,amount);
+    	items.add(newItem);
+
+    	return "index";
+    }
 	
 	@RequestMapping("/showItems")
 	public ModelAndView callList(HttpServletRequest request,HttpServletResponse response) {
@@ -56,4 +79,14 @@ public class itemController {
 		return mv;
 	}
 
+	@RequestMapping(value = "/display/{id}", method=RequestMethod.GET)
+    public ModelAndView display(@PathVariable("id") String id) {
+		Item targetItem = findItem(id);
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("display");
+		mv.addObject("items", targetItem);
+		
+		return mv;
+    }
 }

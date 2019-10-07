@@ -16,7 +16,10 @@
 
 		<ul>
 			<c:forEach var="listValue" items="${items}">
-				<li>Id:${listValue.getId()}	Name:${listValue.getName()}</li>
+				<p>Id:${listValue.getId()}	Name:${listValue.getName()}</p>
+				<form name="display" action="display/${listValue.getId()}">
+					<input type="submit" value="Show">
+				</form>
 			</c:forEach>
 		</ul>
 
