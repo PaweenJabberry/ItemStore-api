@@ -11,24 +11,12 @@
 </head>
 <body>
 
-<a href="showItems">Show items</a>
-<c:if test="${not empty items}">
+<form name="showAll" action="showAll">
+	<input type="submit" value="Show All Items">
+</form>
 
-		<ul>
-			<c:forEach var="listValue" items="${items}">
-				<p>Id:${listValue.getId()}	Name:${listValue.getName()}</p>
-				<form name="display" action="display/${listValue.getId()}">
-					<input type="submit" value="Show">
-				</form>
-			</c:forEach>
-		</ul>
-
-</c:if>
-
-<form name="delete" action="delete" method="POST">
-	<h2>Fills a name for remove</h2>
-	<input type="text" name="t1"><br><br>
-	<input type="submit">
+<form name="addingForm" action="addingForm">
+	<input type="submit" value="Add New Item">
 </form>
 
 </body>

@@ -1,7 +1,6 @@
 package com.ItemStore.api;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,6 +25,11 @@ public class itemController {
     public String index() {
         return "index";
     }
+	
+	@RequestMapping("/addingForm")
+    public String addingForm() {
+        return "add";
+    }
 	    
     public List<Item> getAllItems() {
         return items;
@@ -46,39 +50,35 @@ public class itemController {
     
     @RequestMapping(value = "/delete", method=RequestMethod.POST)
     public String deleteItems(@RequestParam("t1") String name) {
-//    	System.out.println(name);
+
     	for(int i = 0; i < items.size(); i++) {
     		if(items.get(i).getName().equals(name)) {
     			items.remove(i);
     			break;
     		}
     	}
-    	return "index";
+    	return "redirect:index";
     }
     
     @RequestMapping(value = "/add", method=RequestMethod.POST)
     public String addItems(@RequestParam("id") String id, @RequestParam("name") String name, @RequestParam("amount") int amount) {
-//    	System.out.println(name);
+    	
     	Item newItem = new Item(id,name,amount);
     	items.add(newItem);
 
-    	return "index";
+    	return "redirect:showAll";
     }
 	
-	@RequestMapping("/showItems")
-	public ModelAndView callList(HttpServletRequest request,HttpServletResponse response) {
+	@RequestMapping("/showAll")
+	public ModelAndView callList() {
 		
-		List<Item> items = new ArrayList<Item>();
-
-		items = getAllItems();
-
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("index");
+		mv.setViewName("showAll");
 		mv.addObject("items", items);
 		
 		return mv;
 	}
-
+	
 	@RequestMapping(value = "/display/{id}", method=RequestMethod.GET)
     public ModelAndView display(@PathVariable("id") String id) {
 		Item targetItem = findItem(id);
