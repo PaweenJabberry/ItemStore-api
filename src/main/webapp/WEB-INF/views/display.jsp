@@ -10,16 +10,28 @@
 <body>
 <c:if test="${not empty items}">
 
-	<div id="section1">
-		<p id="line1">ID:${items.getId()}</p>
-	</div>
-	<div id="section2">
-		<p id="line2">Name:${items.getName()}</p>
-	</div>
-	<div id="section3">
-		<p id="line3">Amount:${items.getAmount()}</p>
-	</div>
-
+	<form name="update" action="/update" method="POST">
+		<label>ID: </label>
+		<input readonly="readonly" type="text" name="itemId" id="itemId" value="${items.getId()}"><br><br>
+		
+		<label>Name: </label>
+		<input readonly="readonly" type="text" name="itemName" id="itemName" value="${items.getName()}"><br><br>
+		
+		<label>Amount: </label>
+		<input readonly="readonly" type="text" name="itemAmount" id="itemAmount" value="${items.getAmount()}"><br><br>
+		
+		<button type="button" onclick="Edit()">Edit</button>
+		
+		<input type="hidden" type="text" name="oldId" value="${items.getId()}">
+		<input type="submit" value="Update">
+		<input type="button" value="Cancel" onClick="document.location.reload(true)">
+	</form>
+	
+	<form name="showAll" action="/showAll">
+		<input type="submit" value="Back">
+	</form>
+	
+	
 </c:if>
 
 <c:if test="${empty items}">
@@ -28,5 +40,6 @@
 
 </c:if>
 
+<script src="/js/edit.js"></script>
 </body>
 </html>

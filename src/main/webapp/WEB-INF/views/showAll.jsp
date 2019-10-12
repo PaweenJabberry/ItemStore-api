@@ -13,7 +13,7 @@
 		<ul>
 			<c:forEach var="listValue" items="${items}">
 				<p>Id:${listValue.getId()}	Name:${listValue.getName()}</p>
-				<form name="display" action="display/${listValue.getId()}">
+				<form name="display" action="/display/${listValue.getId()}">
 					<input type="submit" value="Show">
 				</form>
 			</c:forEach>
@@ -21,7 +21,7 @@
 
 	</c:if>
 	
-	<form name="delete" action="delete" method="POST">
+	<form name="delete" action="/delete" method="POST">
 		<h2>Fills a name for remove</h2>
 		<input type="text" name="t1"><br><br>
 		<input type="submit">

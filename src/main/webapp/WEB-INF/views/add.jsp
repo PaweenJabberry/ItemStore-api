@@ -7,7 +7,7 @@
 <title>Add Item</title>
 </head>
 <body>
-	<form name="add" action="add" method="POST">
+	<form name="add" action="/add" method="POST">
 		<h2>Fills a information of new item</h2>
 		<label>Id : </label>
 		<input type="text" name="id"><br><br>

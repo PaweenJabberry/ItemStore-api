@@ -11,11 +11,11 @@
 </head>
 <body>
 
-<form name="showAll" action="showAll">
+<form name="showAll" action="/showAll">
 	<input type="submit" value="Show All Items">
 </form>
 
-<form name="addingForm" action="addingForm">
+<form name="addingForm" action="/addingForm">
 	<input type="submit" value="Add New Item">
 </form>
 
