@@ -4,20 +4,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="/css/showAll.css"/>
 <meta charset="ISO-8859-1">
 <title>Show All Item</title>
 </head>
 <body>
+	
 	<c:if test="${not empty items}">
 
-		<ul>
+		<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+
+		<table id="myTable">
+		 	<tr class="header">
+			    <th style="width:30%;">Id</th>
+			    <th style="width:30%;">Name</th>
+			    <th style="width:30%;">See more</th>
+		  	</tr>
 			<c:forEach var="listValue" items="${items}">
-				<p>Id:${listValue.getId()}	Name:${listValue.getName()}</p>
-				<form name="display" action="/display/${listValue.getId()}">
-					<input type="submit" value="Show">
-				</form>
+			  	<tr>
+				    <td>${listValue.getId()}</td>
+				    <td>${listValue.getName()}</td>
+				    <td>
+				    	<form name="display" action="/display/${listValue.getId()}">
+							<input type="submit" value="Show">
+						</form>
+				    </td>
+			  	</tr>
 			</c:forEach>
-		</ul>
+		</table>
 
 	</c:if>
 	
@@ -26,5 +40,7 @@
 		<input type="text" name="t1"><br><br>
 		<input type="submit">
 	</form>
+
+<script src="/js/showAll.js"></script>
 </body>
 </html>
