@@ -37,7 +37,28 @@
 	<div class="limiter">
 	<div class="container-table100">
 	<div class="wrap-table100">
-	<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+	<div>
+		<style scoped>
+    		input[type=text] {
+			  width: 100%;
+			  box-sizing: border-box;
+			  border: 2px solid #ccc;
+			  border-radius: 4px;
+			  font-size: 16px;
+			  background-size: 30px 30px;
+			  background-color: Silver;
+			  background-image: url('https://www.konfest.com/wp-content/uploads/2019/05/Konfest-PNG-JPG-Image-Pic-Photo-Free-Download-Royalty-Unlimited-clip-art-sticker-icons-search-symbol-find-magnifying-glass-28.png');
+			  background-position: 10px 10px; 
+			  background-repeat: no-repeat;
+			  padding: 12px 20px 12px 40px;
+			  -webkit-transition: width 0.4s ease-in-out;
+			  transition: width 0.4s ease-in-out;
+			}
+			
+    	</style>
+		<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+	</div>
+	
 	<div class="table100 ver1 m-b-110">
 			<div class="table100-head">
 				<table>
@@ -46,6 +67,7 @@
 							<th class="cell100 column1">Id</th>
 							<th class="cell100 column1">Name</th>
 							<th class="cell100 column1">See more</th>
+							<th class="cell100 column1">Delete</th>
 						</tr>
 					</thead>
 				</table>
@@ -64,6 +86,12 @@
 										<input type="submit" class="w3-button w3-green" value="Show">
 									</form>
 							    </td>
+							    <td class="cell100 column1">
+							    	<form name="delete" action="/delete" method="POST">
+							    		<input type="hidden" name="t1" value="${listValue.getName()}">
+										<input type="submit" class="w3-button w3-red" value="Delete">
+									</form>
+							    </td>
 						  	</tr>
 						</c:forEach>
 
@@ -76,12 +104,6 @@
 	</div>
 
 	</c:if>
-	
-	<form name="delete" action="/delete" method="POST">
-		<h2>Fills a name for remove</h2>
-		<input type="text" name="t1"><br><br>
-		<input type="submit" class="w3-button w3-green">
-	</form>
 	
 
 
